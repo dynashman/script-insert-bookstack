@@ -78,54 +78,7 @@ php artisan migrate --no-interaction --force
 # Set file and folder permissions
 chown www-data:www-data -R bootstrap/cache public/uploads storage && chmod -R 755 bootstrap/cache public/uploads storage
 
-# Set up apache
-a2enmod rewrite
-a2enmod php7.4
-FILE = "/etc/apache2/sites-available/$DOMAIN-bookstack.conf"
-cat > FILE <<EOL
-<VirtualHost *:80>
-	ServerName ${DOMAIN}.help.iscode.tech
 
-	ServerAdmin webmaster@localhost
-	DocumentRoot /var/www/${DOMAIN}/bookstack/public/
-
-    <Directory /var/www/bookstack/public/>
-        Options Indexes FollowSymLinks
-        AllowOverride None
-        Require all granted
-        <IfModule mod_rewrite.c>
-            <IfModule mod_negotiation.c>
-                Options -MultiViews -Indexes
-            </IfModule>
-
-            RewriteEngine On
-
-            # Handle Authorization Header
-            RewriteCond %{HTTP:Authorization} .
-            RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
-
-            # Redirect Trailing Slashes If Not A Folder...
-            RewriteCond %{REQUEST_FILENAME} !-d
-            RewriteCond %{REQUEST_URI} (.+)/$
-            RewriteRule ^ %1 [L,R=301]
-
-            # Handle Front Controller...
-            RewriteCond %{REQUEST_FILENAME} !-d
-            RewriteCond %{REQUEST_FILENAME} !-f
-            RewriteRule ^ index.php [L]
-        </IfModule>
-    </Directory>
-
-	ErrorLog \${APACHE_LOG_DIR}/error.log
-	CustomLog \${APACHE_LOG_DIR}/access.log combined
-
-</VirtualHost>
-EOL
-CON = "$DOMAIN-bookstack.conf"
-a2ensite CON
-
-# Restart apache to load new config
-systemctl restart apache2
 
 echo ""
 echo "Setup Finished, Your BookStack instance should now be installed."
