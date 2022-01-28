@@ -31,7 +31,10 @@ mysql -u root --execute="GRANT ALL ON $DOMAIN.* TO '$DOMAIN'@'localhost';FLUSH P
 
 # Download BookStack
 cd /var/www || exit
+printf "current directory"
 mkdir $DOMAIN
+ls
+printf "end ls"
 git clone https://github.com/BookStackApp/BookStack.git --branch release --single-branch bookstack
 BOOKSTACK_DIR="/var/www/$DOMAIN/bookstack"
 cd $BOOKSTACK_DIR || exit
