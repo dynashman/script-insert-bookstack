@@ -8,7 +8,7 @@ DOMAIN=$1
 if [ -z "$1" ]
 then
 echo ""
-printf "Enter v3 the domain you want to host BookStack and press [ENTER]\nExamples: my-site.com or docs.my-site.com\n"
+printf "Enter v5 the domain you want to host BookStack and press [ENTER]\nExamples: my-site.com or docs.my-site.com\n"
 read -r DOMAIN
 fi
 
@@ -81,8 +81,8 @@ chown www-data:www-data -R bootstrap/cache public/uploads storage && chmod -R 75
 # Set up apache
 a2enmod rewrite
 a2enmod php7.4
-FILE = ">/etc/apache2/sites-available/$DOMAIN-bookstack.conf"
-cat FILE <<EOL
+FILE = "/etc/apache2/sites-available/$DOMAIN-bookstack.conf"
+cat > FILE <<EOL
 <VirtualHost *:80>
 	ServerName ${DOMAIN}.help.iscode.tech
 
