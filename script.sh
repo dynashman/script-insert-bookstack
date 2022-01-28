@@ -8,7 +8,7 @@ DOMAIN=$1
 if [ -z "$1" ]
 then
 echo ""
-printf "Enter v2 the domain you want to host BookStack and press [ENTER]\nExamples: my-site.com or docs.my-site.com\n"
+printf "Enter v3 the domain you want to host BookStack and press [ENTER]\nExamples: my-site.com or docs.my-site.com\n"
 read -r DOMAIN
 fi
 
