@@ -33,7 +33,7 @@ mysql -u root --execute="GRANT ALL ON $DOMAIN.* TO '$DOMAIN'@'localhost';FLUSH P
 cd /var/www || exit
 mkdir $DOMAIN
 git clone https://github.com/BookStackApp/BookStack.git --branch release --single-branch bookstack
-BOOKSTACK_DIR="/var/www/$domain/bookstack"
+BOOKSTACK_DIR="/var/www/$DOMAIN/bookstack"
 cd $BOOKSTACK_DIR || exit
 
 # Install composer
@@ -82,7 +82,7 @@ cat FILE <<EOL
 	ServerName ${DOMAIN}.help.iscode.tech
 
 	ServerAdmin webmaster@localhost
-	DocumentRoot /var/www/${domain}/bookstack/public/
+	DocumentRoot /var/www/${DOMAIN}/bookstack/public/
 
     <Directory /var/www/bookstack/public/>
         Options Indexes FollowSymLinks
