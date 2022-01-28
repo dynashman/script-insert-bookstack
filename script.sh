@@ -66,8 +66,8 @@ php /usr/local/bin/composer install --no-dev --no-plugins
 # Copy and update BookStack environment variables
 cp .env.example .env
 sed -i.bak "s@APP_URL=.*\$@APP_URL=http://$DOMAIN.help.iscode.tech@" .env
-sed -i.bak 's/DB_DATABASE=.*$/DB_DATABASE=$DOMAIN/' .env
-sed -i.bak 's/DB_USERNAME=.*$/DB_USERNAME=$DOMAIN/' .env
+sed -i.bak "s/DB_DATABASE=.*$/DB_DATABASE=$DOMAIN/" .env
+sed -i.bak "s/DB_USERNAME=.*$/DB_USERNAME=$DOMAIN/" .env
 sed -i.bak "s/DB_PASSWORD=.*\$/DB_PASSWORD=$DB_PASS/" .env
 
 # Generate the application key
