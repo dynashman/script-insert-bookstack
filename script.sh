@@ -35,6 +35,8 @@ printf "current directory"
 mkdir $DOMAIN
 ls
 printf "end ls"
+BOOKSTACK_DIR1="/var/www/$DOMAIN/"
+cd $BOOKSTACK_DIR1 || exit
 git clone https://github.com/BookStackApp/BookStack.git --branch release --single-branch bookstack
 BOOKSTACK_DIR="/var/www/$DOMAIN/bookstack"
 cd $BOOKSTACK_DIR || exit
